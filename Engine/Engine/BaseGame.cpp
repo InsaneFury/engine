@@ -18,7 +18,7 @@ int BaseGame::InitWindow()
 	{
 		/* Render here */
 		render->SetBackground(bgColor);
-
+		render->DrawTriangle();
 		/* Swap front and back buffers */
 		glfwSwapBuffers(window.GetWindow());
 

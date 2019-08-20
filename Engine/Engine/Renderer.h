@@ -10,6 +10,7 @@ public:
 	Renderer();
 	~Renderer();
 	void SetBackground(Color _color);
+	void DrawTriangle();
 };
 
 #endif // !RENDERER_H
