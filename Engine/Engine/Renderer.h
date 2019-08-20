@@ -6,9 +6,8 @@
 
 class Renderer
 {
-	Color color;
 public:
-	Renderer(Color _color);
+	Renderer();
 	~Renderer();
 	void SetBackground(Color _color);
 };

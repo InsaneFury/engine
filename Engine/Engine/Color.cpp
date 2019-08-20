@@ -7,6 +7,7 @@ green(_green),
 blue(_blue),
 alpha(_alpha)
 {
+
 }
 
 Color::~Color()
