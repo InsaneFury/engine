@@ -24,7 +24,7 @@ int Window::CreateWindow()
 
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
-	glClearColor(1, 0, 0, 1);
+
 	
 	return 0;
 }
