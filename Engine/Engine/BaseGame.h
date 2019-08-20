@@ -7,7 +7,7 @@ class DLLEXPORT BaseGame
 {
 public:
 	 BaseGame();
-	 int Window();
+	 int InitWindow();
 };
 
 #endif //BASE_GAME

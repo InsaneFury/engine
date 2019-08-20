@@ -5,6 +5,6 @@ using namespace std;
 
 void main() {
 	BaseGame game;
-	game.Window();
+	game.InitWindow();
 	cin.get();
 }
