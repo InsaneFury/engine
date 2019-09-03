@@ -89,6 +89,7 @@
       <Command>MKDIR "$(TargetDir)res\assets"
 XCOPY "$(SolutionDir)res\assets" "$(TargetDir)res\assets" /e /h /y /s
 XCOPY "$(SolutionDir)Debug" "$(TargetDir)" /e /h /y /s
+XCOPY "$(SolutionDir)libs\glew-2.1.0\bin\Release\Win32\glew32.dll" "$(TargetDir)" /e /h /y /s
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
