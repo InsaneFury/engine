@@ -8,6 +8,7 @@ class DLLEXPORT Input
 	GLFWwindow* window;
 public:
 	Input();
+	void setWindow(GLFWwindow* current);
 	bool getKey(int key);
 };
 
