@@ -1,12 +1,25 @@
 ﻿  BaseGame.cpp
+d:\enginesprojects\custom\engine\engine\transform.h(13): warning C4251: 'Transform::rotation': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
+  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
+d:\enginesprojects\custom\engine\engine\transform.h(14): warning C4251: 'Transform::position': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
+  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
+d:\enginesprojects\custom\engine\engine\transform.h(15): warning C4251: 'Transform::localScale': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
+  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
 d:\enginesprojects\custom\engine\engine\shape.h(21): warning C4251: 'Shape::model': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
   d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
 d:\enginesprojects\custom\engine\engine\shape.h(22): warning C4251: 'Shape::view': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
   d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
 d:\enginesprojects\custom\engine\engine\shape.h(23): warning C4251: 'Shape::proj': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
   d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
+  Input.cpp
   Renderer.cpp
   Shape.cpp
+d:\enginesprojects\custom\engine\engine\transform.h(13): warning C4251: 'Transform::rotation': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
+  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
+d:\enginesprojects\custom\engine\engine\transform.h(14): warning C4251: 'Transform::position': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
+  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
+d:\enginesprojects\custom\engine\engine\transform.h(15): warning C4251: 'Transform::localScale': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
+  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
 d:\enginesprojects\custom\engine\engine\shape.h(21): warning C4251: 'Shape::model': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
   d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
 d:\enginesprojects\custom\engine\engine\shape.h(22): warning C4251: 'Shape::view': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
@@ -14,13 +27,26 @@ d:\enginesprojects\custom\engine\engine\shape.h(22): warning C4251: 'Shape::view
 d:\enginesprojects\custom\engine\engine\shape.h(23): warning C4251: 'Shape::proj': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
   d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
   Transform.cpp
+d:\enginesprojects\custom\engine\engine\transform.h(13): warning C4251: 'Transform::rotation': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
+  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
+d:\enginesprojects\custom\engine\engine\transform.h(14): warning C4251: 'Transform::position': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
+  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
+d:\enginesprojects\custom\engine\engine\transform.h(15): warning C4251: 'Transform::localScale': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
+  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
   Triangle.cpp
+d:\enginesprojects\custom\engine\engine\transform.h(13): warning C4251: 'Transform::rotation': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
+  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
+d:\enginesprojects\custom\engine\engine\transform.h(14): warning C4251: 'Transform::position': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
+  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
+d:\enginesprojects\custom\engine\engine\transform.h(15): warning C4251: 'Transform::localScale': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
+  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
 d:\enginesprojects\custom\engine\engine\shape.h(21): warning C4251: 'Shape::model': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
   d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
 d:\enginesprojects\custom\engine\engine\shape.h(22): warning C4251: 'Shape::view': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
   d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
 d:\enginesprojects\custom\engine\engine\shape.h(23): warning C4251: 'Shape::proj': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
   d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
+  Window.cpp
   Generando código...
      Creando biblioteca D:\EnginesProjects\Custom\Engine\Debug\Engine.lib y objeto D:\EnginesProjects\Custom\Engine\Debug\Engine.exp
 LINK : warning LNK4098: la biblioteca predeterminada'LIBCMT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca

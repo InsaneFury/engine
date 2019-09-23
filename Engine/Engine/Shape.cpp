@@ -30,3 +30,16 @@ void Shape::moveTo(float _x, float _y)
 	x = _x;
 	y = _y;
 }
+void Shape::rotate(float speed, glm::vec3 axis)
+{
+	model = glm::rotate(model, glm::radians(speed), axis);
+}
+
+void Shape::translate(glm::vec3 pos)
+{
+	model = glm::translate(model, pos);
+}
+void Shape::scale(glm::vec3 factor)
+{
+	model = glm::scale(model, factor);
+}

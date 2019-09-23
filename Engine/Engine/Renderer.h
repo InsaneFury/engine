@@ -29,7 +29,6 @@ public:
 	unsigned int CompileShader(unsigned int type, const string& source);
 	unsigned int CreateShader(const string& vertexShader, const string& fragmentShader);
 	void SetBackground(Color _color);
-	void DrawTriangle();
 };
 
 #endif // !RENDERER_H

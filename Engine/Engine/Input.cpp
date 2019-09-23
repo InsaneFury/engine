@@ -2,8 +2,15 @@
 
 Input::Input()
 {
+	window = nullptr;
 }
 
-Input::~Input()
+bool Input::getKey(int key)
 {
+	int state = glfwGetKey(window, key);
+	if (state == GLFW_PRESS)
+	{
+		return true;
+	}
+	return false;
 }
