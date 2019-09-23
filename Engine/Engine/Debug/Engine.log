@@ -1,27 +1,8 @@
-﻿  BaseGame.cpp
-d:\enginesprojects\custom\engine\engine\shape.h(19): warning C4251: 'Shape::model': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
-  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
-d:\enginesprojects\custom\engine\engine\shape.h(20): warning C4251: 'Shape::view': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
-  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
-d:\enginesprojects\custom\engine\engine\shape.h(21): warning C4251: 'Shape::proj': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
-  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
-  Shape.cpp
-d:\enginesprojects\custom\engine\engine\shape.h(19): warning C4251: 'Shape::model': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
-  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
-d:\enginesprojects\custom\engine\engine\shape.h(20): warning C4251: 'Shape::view': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
-  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
-d:\enginesprojects\custom\engine\engine\shape.h(21): warning C4251: 'Shape::proj': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
-  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
-  Triangle.cpp
-d:\enginesprojects\custom\engine\engine\shape.h(19): warning C4251: 'Shape::model': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
-  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
-d:\enginesprojects\custom\engine\engine\shape.h(20): warning C4251: 'Shape::view': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
-  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
-d:\enginesprojects\custom\engine\engine\shape.h(21): warning C4251: 'Shape::proj': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
-  d:\enginesprojects\custom\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
-  Generando código...
-     Creando biblioteca D:\EnginesProjects\Custom\Engine\Debug\Engine.lib y objeto D:\EnginesProjects\Custom\Engine\Debug\Engine.exp
-LINK : warning LNK4098: la biblioteca predeterminada'LIBCMT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
-LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
-glew32s.lib(glew.obj) : warning LNK4099: no se encontró PDB 'vc120.pdb' con 'glew32s.lib(glew.obj)' o en 'D:\EnginesProjects\Custom\Engine\Debug\vc120.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-  Engine.vcxproj -> D:\EnginesProjects\Custom\Engine\Debug\Engine.dll
+﻿  Triangle.cpp
+c:\users\administrador\desktop\engine\engine\engine\shape.h(19): warning C4251: 'Shape::model': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
+  c:\users\administrador\desktop\engine\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
+c:\users\administrador\desktop\engine\engine\engine\shape.h(20): warning C4251: 'Shape::view': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
+  c:\users\administrador\desktop\engine\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
+c:\users\administrador\desktop\engine\engine\engine\shape.h(21): warning C4251: 'Shape::proj': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
+  c:\users\administrador\desktop\engine\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
+  Engine.vcxproj -> C:\Users\Administrador\Desktop\engine\Engine\Debug\Engine.dll

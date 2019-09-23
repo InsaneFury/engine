@@ -1,20 +1,18 @@
 #include "Shape.h"
 
 Shape::Shape()
-	:
-	VertexArrayID(0),
-	VertexBuffer(0),
-	shader(0)
 {
+	VertexArrayID=0;
+	VertexBuffer=0;
+	shader=0;
 }
 
 Shape::Shape(float _x, float _y)
-	:
-	VertexArrayID(0),
-	VertexBuffer(0),
-	shader(0)
 {
 	moveTo(_x, _y);
+	VertexArrayID = 0;
+	VertexBuffer = 0;
+	shader = 0;
 }
 
 void Shape::setX(float _x)

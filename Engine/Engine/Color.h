@@ -4,19 +4,19 @@
 
 class Color
 {
-	GLclampf red;
-	GLclampf green;
-	GLclampf blue;
-	GLclampf alpha;
+	GLfloat red;
+	GLfloat green;
+	GLfloat blue;
+	GLfloat alpha;
 
 public:
 	Color(GLclampf _red, GLclampf green, GLclampf blue, GLclampf alpha);
 	~Color();
 	void SetColor(GLclampf _red, GLclampf green, GLclampf blue, GLclampf alpha);
-	GLclampf GetRed() { return red; }
-	GLclampf GetGreen() { return green; }
-	GLclampf GetBlue() { return blue; }
-	GLclampf GetAlpha() { return alpha; }
+	GLfloat GetRed() { return red; }
+	GLfloat GetGreen() { return green; }
+	GLfloat GetBlue() { return blue; }
+	GLfloat GetAlpha() { return alpha; }
 };
 #endif // COLOR_H
 

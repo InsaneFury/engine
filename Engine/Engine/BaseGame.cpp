@@ -15,7 +15,7 @@ int BaseGame::InitWindow()
 	window.CreateWindow();
 	Renderer render;
 	Color bgColor = Color(1.0f, 1.0f, 0.0f, 1.0f);
-	Color tColor = Color(0.0f, 0.0f, 1.0f, 1.0f);
+	Color tColor = Color(0.0f, 0.0f, 0.0f,1.0f);
 	Triangle triangle;
 	triangle.currentRenderer = render;
 	triangle.set(tColor);
@@ -24,7 +24,8 @@ int BaseGame::InitWindow()
 	{
 		/* Render here */
 		render.SetBackground(bgColor);
-		//triangle.draw();
+		triangle.draw();
+
 		/* Swap front and back buffers */
 		glfwSwapBuffers(window.GetWindow());
 

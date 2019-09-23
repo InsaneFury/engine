@@ -21,16 +21,7 @@ Triangle::Triangle(float _x, float _y)
 
 void Triangle::set(Color triangleColor)
 {
-	
-	float texCoords[] =
-	{
-		0.0f, 0.0f,  
-		1.0f, 0.0f,  
-		0.5f, 1.0f   
-	};
-
 	Vertex triangleVertexs[3];
-
 
 	triangleVertexs[0].x = -0.5f;
 	triangleVertexs[0].y = -0.5f;
@@ -39,20 +30,19 @@ void Triangle::set(Color triangleColor)
 	triangleVertexs[2].x = 0.0f;
 	triangleVertexs[2].y = 0.5f;
 
-
-	float red = static_cast<float>(triangleColor.GetRed()) * 0.004f;
-	float green = static_cast<float>(triangleColor.GetGreen()) * 0.004f;
-	float blue = static_cast<float>(triangleColor.GetBlue()) * 0.004f;
-	float alpha = static_cast<float>(triangleColor.GetAlpha()) * 0.004f;
+	GLfloat red =triangleColor.GetRed();
+	GLfloat green = triangleColor.GetGreen();
+	GLfloat blue = triangleColor.GetBlue();
+	GLfloat alpha = triangleColor.GetAlpha();
 
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
 
 	static const GLfloat g_vertex_buffer_data[] =
 	{
-		   triangleVertexs[0].x, triangleVertexs[0].y, red, green, blue, alpha, 0.0f, 0.0f,
-		   triangleVertexs[1].x, triangleVertexs[1].y, red, green, blue, alpha, 1.0f, 0.0f,
-		   triangleVertexs[2].x, triangleVertexs[2].y, red, green, blue, alpha, 0.5f, 1.0f
+		   triangleVertexs[0].x, triangleVertexs[0].y, red, green, blue, alpha, 
+		   triangleVertexs[1].x, triangleVertexs[1].y, red, green, blue, alpha, 
+		   triangleVertexs[2].x, triangleVertexs[2].y, red, green, blue, alpha
 	};
 
 	glGenBuffers(1, &VertexBuffer);
@@ -69,8 +59,11 @@ void Triangle::set(Color triangleColor)
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-	ShaderProgramSource source = currentRenderer.ShaderParser("res/shaders/Shape.shader");
+	/*ShaderProgramSource source = currentRenderer.ShaderParser("res/shaders/Shape.shader");
 	shader = currentRenderer.CreateShader(source.vertexSource, source.fragmentSource);
 	glUseProgram(shader);
 
@@ -87,7 +80,7 @@ void Triangle::set(Color triangleColor)
 	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
 
 	view = glm::lookAt(
-		glm::vec3(0.0f, 0.0f, -2.0f), 
+		glm::vec3(0.0f, 0.0f, 2.0f), 
 		glm::vec3(0.0f, 0.0f, 0.0f), 
 		glm::vec3(0.0f, 1.0f, 0.0f) 
 	);
@@ -104,13 +97,11 @@ void Triangle::set(Color triangleColor)
 		100.f
 	);
 	GLint uniProj = glGetUniformLocation(shader, "proj");
-	glUniformMatrix4fv(uniProj, 1, GL_FALSE, glm::value_ptr(proj));
+	glUniformMatrix4fv(uniProj, 1, GL_FALSE, glm::value_ptr(proj));*/
 }
 
 void Triangle::draw()
 {
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture1);
 	model = glm::rotate(model, glm::radians(0.5f), glm::vec3(0.0f, 0.0f, 1.0f));
 	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
 	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
