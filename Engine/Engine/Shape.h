@@ -1,7 +1,9 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 #define DLLEXPORT __declspec(dllexport)
+
 #include "Renderer.h"
+#include "Transform.h"
 
 class DLLEXPORT Shape
 {
@@ -30,6 +32,10 @@ public:
 	void moveTo(float _x, float _y);
 	virtual void set(Color shapeColor) = 0;
 	virtual void draw() = 0;
+	Transform transform;
+	void rotate(float speed, glm::vec3 _rotation);
+	void translate(glm::vec3 _position);
+	void scale(glm::vec3 _localScale);
 	Renderer currentRenderer;
 };
 

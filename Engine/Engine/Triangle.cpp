@@ -58,8 +58,7 @@ void Triangle::set(Color triangleColor)
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
 
 	
-
-	ShaderProgramSource source = currentRenderer.ShaderParser("res/shaders/Shape.shader");
+	ShaderProgramSource source = currentRenderer.ShaderParser("shaders/Shape.shader");
 	shader = currentRenderer.CreateShader(source.vertexSource, source.fragmentSource);
 	glUseProgram(shader);
 
