@@ -15,6 +15,7 @@ void main()
 {
 	Color = color;
 	gl_Position = proj * view * model * position;
+	
 };
 
 #shader fragment

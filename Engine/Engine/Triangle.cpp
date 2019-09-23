@@ -23,12 +23,9 @@ void Triangle::set(Color triangleColor)
 {
 	Vertex triangleVertexs[3];
 
-	triangleVertexs[0].x = -0.5f;
-	triangleVertexs[0].y = -0.5f;
-	triangleVertexs[1].x = 0.5f;
-	triangleVertexs[1].y = -0.5f;
-	triangleVertexs[2].x = 0.0f;
-	triangleVertexs[2].y = 0.5f;
+	triangleVertexs[0] = { -0.5f, -0.5f };
+	triangleVertexs[1] = { 0.5f, -0.5f };
+	triangleVertexs[2] = { 0.0f, 0.5f };
 
 	GLfloat red =triangleColor.GetRed();
 	GLfloat green = triangleColor.GetGreen();
@@ -59,28 +56,27 @@ void Triangle::set(Color triangleColor)
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-	/*ShaderProgramSource source = currentRenderer.ShaderParser("res/shaders/Shape.shader");
+	
+
+	ShaderProgramSource source = currentRenderer.ShaderParser("res/shaders/Shape.shader");
 	shader = currentRenderer.CreateShader(source.vertexSource, source.fragmentSource);
 	glUseProgram(shader);
 
 	GLint posAttrib = glGetAttribLocation(shader, "position");
 	glEnableVertexAttribArray(posAttrib);
-	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), 0);
+	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), 0);
 
 	GLint colAttrib = glGetAttribLocation(shader, "color");
 	glEnableVertexAttribArray(colAttrib);
-	glVertexAttribPointer(colAttrib, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
+	glVertexAttribPointer(colAttrib, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
 
 	uniModel = glGetUniformLocation(shader, "model");
 	model = glm::translate(glm::vec3(0.0f, 0.0f, 0.0f));
 	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
 
 	view = glm::lookAt(
-		glm::vec3(0.0f, 0.0f, 2.0f), 
+		glm::vec3(0.0f, 0.0f, -2.0f), 
 		glm::vec3(0.0f, 0.0f, 0.0f), 
 		glm::vec3(0.0f, 1.0f, 0.0f) 
 	);
@@ -97,7 +93,7 @@ void Triangle::set(Color triangleColor)
 		100.f
 	);
 	GLint uniProj = glGetUniformLocation(shader, "proj");
-	glUniformMatrix4fv(uniProj, 1, GL_FALSE, glm::value_ptr(proj));*/
+	glUniformMatrix4fv(uniProj, 1, GL_FALSE, glm::value_ptr(proj));
 }
 
 void Triangle::draw()
