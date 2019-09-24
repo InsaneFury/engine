@@ -18,7 +18,7 @@ int Window::CreateWindow()
 		return -1;
 
 	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(860, 860, "Engine", NULL, NULL);
+	window = glfwCreateWindow(860, 860, "Triangle Madness Simulator", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();

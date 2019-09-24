@@ -22,12 +22,42 @@ int BaseGame::InitWindow()
 	Triangle triangle;
 	triangle.currentRenderer = render;
 	triangle.set(tColor);
+
+	double currentFrame = glfwGetTime();
+	double lastFrame = currentFrame;
+	double deltaTime;
+
+	double a = 0;
+	double speed = 0.1;
+
+	float x = 0;
+	float y = 0;
+	float xRotate = 0;
+	int blinkSpeed = 200;
+
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window.GetWindow()))
 	{
+		if (a < blinkSpeed) {
+			a++;
+		}
+		
+		currentFrame += glfwGetTime();
+		deltaTime = currentFrame - lastFrame;
+		lastFrame = currentFrame;
+
+		x = (sin(a *deltaTime * speed) * 0.8f);
+		y = (cos(a *deltaTime * speed) * 0.8f);
+		xRotate += deltaTime;
+
+		bgColor = Color(x, y, 1.0f, 1.0f);
+		
+
 		/* Render here */
 		render.SetBackground(bgColor);
 		triangle.draw();
+
+		triangle.rotate(1, glm::vec3(xRotate, 0.0f, 0.0f));
 
 		if (input.getKey(GLFW_KEY_E))
 		{
