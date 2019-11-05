@@ -4,6 +4,39 @@
 
 #include "Vertex.h"
 
+
+
+unsigned int CreateTexture(const char* path, GLenum type, bool flip)
+{
+	stbi_set_flip_vertically_on_load(flip);
+
+	int width;
+	int height;
+	int nrChannels;
+	unsigned char *data = stbi_load(path, &width, &height, &nrChannels, 0);
+
+	unsigned int texture;
+	glGenTextures(1, &texture);
+	glActiveTexture(GL_TEXTURE0); // activate the texture unit first before binding texture
+	glBindTexture(GL_TEXTURE_2D, texture);
+	if (data)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, type, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+
+
+
+	stbi_image_free(data);
+
+	return texture;
+}
+
+
 Triangle::Triangle()
 {
 	VertexArrayID = 0;
@@ -21,7 +54,20 @@ Triangle::Triangle(float _x, float _y)
 
 void Triangle::set(Color triangleColor)
 {
+
+	texture1 = CreateTexture("textures/pikachu.jpg", GL_RGB, true);
+	texture2 = CreateTexture("textures/capi.png", GL_RGBA, true);
+
 	Vertex triangleVertexs[3];
+
+	Vertex texCoords[] =
+	{
+		{ 0.0f, 0.0f },
+		{ 1.0f, 0.0f },
+		{ 0.5f, 1.0f }
+	};
+
+
 
 	triangleVertexs[0] = { -0.5f, -0.5f };
 	triangleVertexs[1] = { 0.5f, -0.5f };
@@ -37,9 +83,9 @@ void Triangle::set(Color triangleColor)
 
 	static const GLfloat g_vertex_buffer_data[] =
 	{
-		   triangleVertexs[0].x, triangleVertexs[0].y, red, green, blue, alpha, 
-		   triangleVertexs[1].x, triangleVertexs[1].y, red, green, blue, alpha, 
-		   triangleVertexs[2].x, triangleVertexs[2].y, red, green, blue, alpha
+		   triangleVertexs[0].x, triangleVertexs[0].y, red, green, blue, alpha,  texCoords[0].x, texCoords[0].y,
+		   triangleVertexs[1].x, triangleVertexs[1].y, red, green, blue, alpha,  texCoords[1].x, texCoords[1].y,
+		   triangleVertexs[2].x, triangleVertexs[2].y, red, green, blue, alpha,  texCoords[2].x, texCoords[2].y
 	};
 
 	glGenBuffers(1, &VertexBuffer);
@@ -64,12 +110,17 @@ void Triangle::set(Color triangleColor)
 
 	GLint posAttrib = glGetAttribLocation(shader, "position");
 	glEnableVertexAttribArray(posAttrib);
-	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), 0);
+	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), 0);
 
 	GLint colAttrib = glGetAttribLocation(shader, "color");
 	glEnableVertexAttribArray(colAttrib);
-	glVertexAttribPointer(colAttrib, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
+	glVertexAttribPointer(colAttrib, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
 
+
+	GLint texAttrib = glGetAttribLocation(shader, "texturePos");
+	glEnableVertexAttribArray(texAttrib);
+	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	
 	uniModel = glGetUniformLocation(shader, "model");
 	model = glm::translate(glm::vec3(0.0f, 0.0f, 0.0f));
 	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
@@ -93,10 +144,16 @@ void Triangle::set(Color triangleColor)
 	);
 	GLint uniProj = glGetUniformLocation(shader, "proj");
 	glUniformMatrix4fv(uniProj, 1, GL_FALSE, glm::value_ptr(proj));
+	glUniform1i(glGetUniformLocation(shader, "texture1"), 0);
+	glUniform1i(glGetUniformLocation(shader, "texture2"), 1); 
 }
 
 void Triangle::draw()
 {
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture1);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, texture2);
 	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
 	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 }

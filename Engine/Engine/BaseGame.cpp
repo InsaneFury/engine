@@ -18,7 +18,7 @@ int BaseGame::InitWindow()
 	Input input;
 	input.setWindow(window.GetWindow());
 	Color bgColor = Color(1.0f, 1.0f, 0.0f, 1.0f);
-	Color tColor = Color(0.0f, 0.0f, 0.0f,1.0f);
+	Color tColor = Color(1.0f, 1.0f, 1.0f,1.0f);
 	Triangle triangle;
 	triangle.currentRenderer = render;
 	triangle.set(tColor);
