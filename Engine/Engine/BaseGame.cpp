@@ -21,7 +21,7 @@ int BaseGame::InitWindow()
 	Color tColor = Color(1.0f, 1.0f, 1.0f,1.0f);
 	Triangle triangle;
 	triangle.currentRenderer = render;
-	triangle.set(tColor);
+	triangle.set(tColor, "textures/pikachu.jpg", GL_RGB, true, "textures/capi.png", GL_RGBA, true );
 
 	double currentFrame = glfwGetTime();
 	double lastFrame = currentFrame;

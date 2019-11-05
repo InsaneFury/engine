@@ -52,11 +52,12 @@ Triangle::Triangle(float _x, float _y)
 	shader = 0;
 }
 
-void Triangle::set(Color triangleColor)
+void Triangle::set(Color triangleColor, const char * pathTexture1, GLenum typeTexture1, bool flipTexture1,
+				   const char * pathTexture2, GLenum typeTexture2, bool flipTexture2)
 {
 
-	texture1 = CreateTexture("textures/pikachu.jpg", GL_RGB, true);
-	texture2 = CreateTexture("textures/capi.png", GL_RGBA, true);
+	texture1 = CreateTexture(pathTexture1, typeTexture1,flipTexture1);
+	texture2 = CreateTexture(pathTexture2,typeTexture2, flipTexture2);
 
 	Vertex triangleVertexs[3];
 

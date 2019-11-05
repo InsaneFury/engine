@@ -30,7 +30,8 @@ public:
 	void setX(float _x);
 	void setY(float _y);
 	void moveTo(float _x, float _y);
-	virtual void set(Color shapeColor) = 0;
+	virtual void set(Color shapeColor, const char * pathTexture1, GLenum typeTexture1, bool flipTexture1,
+		const char * pathTexture2, GLenum typeTexture2, bool flipTexture2) = 0;
 	virtual void draw() = 0;
 	Transform transform;
 	void rotate(float speed, glm::vec3 _rotation);
