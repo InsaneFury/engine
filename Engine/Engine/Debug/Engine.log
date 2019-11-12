@@ -11,7 +11,7 @@ c:\users\administrador\desktop\engine\engine\engine\shape.h(22): warning C4251: 
   c:\users\administrador\desktop\engine\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
 c:\users\administrador\desktop\engine\engine\engine\shape.h(23): warning C4251: 'Shape::proj': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
   c:\users\administrador\desktop\engine\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
-c:\users\administrador\desktop\engine\engine\engine\basegame.cpp(49): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-c:\users\administrador\desktop\engine\engine\engine\basegame.cpp(50): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-c:\users\administrador\desktop\engine\engine\engine\basegame.cpp(51): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\administrador\desktop\engine\engine\engine\basegame.cpp(51): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\administrador\desktop\engine\engine\engine\basegame.cpp(52): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\administrador\desktop\engine\engine\engine\basegame.cpp(53): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
   Engine.vcxproj -> C:\Users\Administrador\Desktop\engine\Engine\Debug\Engine.dll

@@ -20,9 +20,11 @@ int BaseGame::InitWindow()
 	Color bgColor = Color(1.0f, 1.0f, 0.0f, 1.0f);
 	Color tColor = Color(1.0f, 1.0f, 1.0f,1.0f);
 	Triangle triangle;
+	Triangle t2;
+	t2.currentRenderer = render;
 	triangle.currentRenderer = render;
 	triangle.set(tColor, "textures/pikachu.jpg", GL_RGB, true, "textures/capi.png", GL_RGBA, true );
-
+	t2.set(tColor, "textures/pikachu.jpg", GL_RGB, true, "textures/cris.png", GL_RGBA, true);
 	double currentFrame = glfwGetTime();
 	double lastFrame = currentFrame;
 	double deltaTime;
@@ -30,7 +32,7 @@ int BaseGame::InitWindow()
 	double a = 0;
 	double speed = 0.1;
 
-	float x = 0;
+	float x = 0;	
 	float y = 0;
 	float xRotate = 0;
 	int blinkSpeed = 200;
@@ -55,9 +57,33 @@ int BaseGame::InitWindow()
 
 		/* Render here */
 		render.SetBackground(bgColor);
+		t2.draw();
 		triangle.draw();
-
+		
 		triangle.rotate(1, glm::vec3(xRotate, 0.0f, 0.0f));
+
+		if (input.getKey(GLFW_KEY_RIGHT))
+		{
+			t2.translate(glm::vec3(-.01f, .0f, .0f));
+		}
+
+
+		if (input.getKey(GLFW_KEY_LEFT))
+		{
+			t2.translate(glm::vec3(.01f, .0f, .0f));
+		}
+
+		if (input.getKey(GLFW_KEY_UP))
+		{
+			t2.translate(glm::vec3(.0f, .01f, .0f));
+		}
+
+
+		if (input.getKey(GLFW_KEY_DOWN))
+		{
+			t2.translate(glm::vec3(.0f, -.01f, .0f));
+		}
+
 
 		if (input.getKey(GLFW_KEY_E))
 		{
