@@ -1,40 +1,9 @@
-#include "GL/glew.h"
 #include "Triangle.h"
-#include "stb_image.h"
+#include <fstream>
+#include <sstream>
+#include "Window.h"
 
-#include "Vertex.h"
-
-
-
-unsigned int CreateTexture(const char* path, GLenum type, bool flip)
-{
-	stbi_set_flip_vertically_on_load(flip);
-	unsigned int texture;
-	glGenTextures(1, &texture);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	// set the texture wrapping/filtering options (on the currently bound texture object)
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	// load and generate the texture
-	int width, height, nrChannels;
-	unsigned char *data = stbi_load(path, &width, &height, &nrChannels, STBI_rgb_alpha);
-	if (data)
-	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
-	else
-	{
-		std::cout << "Failed to load texture" << std::endl;
-	}
-	stbi_image_free(data);
-
-	return texture;
-}
-
+using namespace Engine;
 
 Triangle::Triangle()
 {
@@ -43,55 +12,77 @@ Triangle::Triangle()
 	shader = 0;
 }
 
-Triangle::Triangle(float _x, float _y)
+Triangle::Triangle(int _x, int _y)
 {
-	moveTo(_x, _y);
+	moveTo(static_cast<float>(_x), static_cast<float>(_y), 0.0f);
 	VertexArrayID = 0;
 	VertexBuffer = 0;
 	shader = 0;
 }
 
-void Triangle::set(Color triangleColor, const char * pathTexture1, GLenum typeTexture1, bool flipTexture1,
-				   const char * pathTexture2, GLenum typeTexture2, bool flipTexture2)
+Triangle::Triangle(float _x, float _y)
 {
+	moveTo(_x, _y, 0.0f);
+	VertexArrayID = 0;
+	VertexBuffer = 0;
+	shader = 0;
+}
 
-	texture1 = CreateTexture(pathTexture1, typeTexture1,flipTexture1);
-	texture2 = CreateTexture(pathTexture2,typeTexture2, flipTexture2);
+Triangle::Triangle(vec2 pos)
+{
+	moveTo(static_cast<float>(pos.x), static_cast<float>(pos.y), 0.0f);
+	VertexArrayID = 0;
+	VertexBuffer = 0;
+	shader = 0;
+}
 
-	Vertex triangleVertexs[3];
+void Triangle::set(Renderer renderer, Color triangleColor)
+{
+	currentRenderer = renderer;
+	ShaderProgramSource source = currentRenderer.ShaderParser("shaders/Shape.shader");
+	shader = currentRenderer.CreateShader(source.vertexSource, source.fragmentSource);
+	glUseProgram(shader);
 
-	Vertex texCoords[] =
+	mat4 proj = currentRenderer.GetProjection();
+	mat4 view = currentRenderer.GetView();
+
+	vec2 texCoords[] =
 	{
 		{ 0.0f, 0.0f },
-		{ 1.0f, 0.0f },
-		{ 0.5f, 1.0f }
+	{ 1.0f, 0.0f },
+	{ 0.5f, 1.0f }
 	};
 
+	vec2 triangleVertexes[] =
+	{
+		{ -0.5f, -0.5f },
+	{ 0.5f, -0.5f },
+	{ 0.0f, 0.5f }
+	};
 
-
-	triangleVertexs[0] = { -0.5f, -0.5f };
-	triangleVertexs[1] = { 0.5f, -0.5f };
-	triangleVertexs[2] = { 0.0f, 0.5f };
-
-	GLfloat red =triangleColor.GetRed();
-	GLfloat green = triangleColor.GetGreen();
-	GLfloat blue = triangleColor.GetBlue();
-	GLfloat alpha = triangleColor.GetAlpha();
+	float red2 = triangleColor.GetRed() * RBGTOFLOAT;
+	float green2 = triangleColor.GetGreen() * RBGTOFLOAT;
+	float blue2 = triangleColor.GetBlue() * RBGTOFLOAT;
+	float alpha2 = triangleColor.GetAlpha() * RBGTOFLOAT;
 
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
 
-	static const GLfloat g_vertex_buffer_data[] =
+	const GLfloat g_vertex_buffer_data[] =
 	{
-		   triangleVertexs[0].x, triangleVertexs[0].y, red, green, blue, alpha,  texCoords[0].x, texCoords[0].y,
-		   triangleVertexs[1].x, triangleVertexs[1].y, red, green, blue, alpha,  texCoords[1].x, texCoords[1].y,
-		   triangleVertexs[2].x, triangleVertexs[2].y, red, green, blue, alpha,  texCoords[2].x, texCoords[2].y
+		triangleVertexes[0].x, triangleVertexes[0].y, red2, green2, blue2, alpha2, texCoords[0].x, texCoords[0].y,
+		triangleVertexes[1].x, triangleVertexes[1].y, red2, green2, blue2, alpha2, texCoords[1].x, texCoords[1].y,
+		triangleVertexes[2].x, triangleVertexes[2].y, red2, green2, blue2, alpha2, texCoords[2].x, texCoords[2].y
 	};
 
+	// Identificar el vertex buffer
+	// Generar un buffer, poner el resultado en el vertexbuffer que acabamos de crear
 	glGenBuffers(1, &VertexBuffer);
+	// Los siguientes comandos le darán características especiales al 'vertexbuffer' 
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
+	// Darle nuestros vértices a  OpenGL.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
-	
+	// Create an element array
 	GLuint ebo;
 	glGenBuffers(1, &ebo);
 
@@ -103,59 +94,44 @@ void Triangle::set(Color triangleColor, const char * pathTexture1, GLenum typeTe
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
 
-	
-	ShaderProgramSource source = currentRenderer.ShaderParser("shaders/Shape.shader");
-	shader = currentRenderer.CreateShader(source.vertexSource, source.fragmentSource);
-	glUseProgram(shader);
 
-	GLint posAttrib = glGetAttribLocation(shader, "position");
+
+	// Specify the layout of the vertex data
+	posAttrib = glGetAttribLocation(shader, "position");
 	glEnableVertexAttribArray(posAttrib);
 	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), 0);
 
-	GLint colAttrib = glGetAttribLocation(shader, "color");
+	colAttrib = glGetAttribLocation(shader, "color");
 	glEnableVertexAttribArray(colAttrib);
 	glVertexAttribPointer(colAttrib, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
 
-
-	GLint texAttrib = glGetAttribLocation(shader, "texturePos");
+	texAttrib = glGetAttribLocation(shader, "texturePos");
 	glEnableVertexAttribArray(texAttrib);
 	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-	
+
+
 	uniModel = glGetUniformLocation(shader, "model");
 	model = glm::translate(glm::vec3(0.0f, 0.0f, 0.0f));
 	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
 
-	view = glm::lookAt(
-		glm::vec3(0.0f, 0.0f, -2.0f), 
-		glm::vec3(0.0f, 0.0f, 0.0f), 
-		glm::vec3(0.0f, 1.0f, 0.0f) 
-	);
+	currentRenderer.SetUniView(glGetUniformLocation(shader, "view"));
+	glUniformMatrix4fv(currentRenderer.GetUniView(), 1, GL_FALSE, glm::value_ptr(view));
 
-	GLint uniView = glGetUniformLocation(shader, "view");
-	glUniformMatrix4fv(uniView, 1, GL_FALSE, glm::value_ptr(view));
+	currentRenderer.SetUniProj(glGetUniformLocation(shader, "proj"));
+	glUniformMatrix4fv(currentRenderer.GetUniProj(), 1, GL_FALSE, glm::value_ptr(proj));
 
-	proj = glm::ortho(
-		-1.0f,
-		1.f,
-		-1.f,
-		1.0f,
-		0.0f,
-		100.f
-	);
-	GLint uniProj = glGetUniformLocation(shader, "proj");
-	glUniformMatrix4fv(uniProj, 1, GL_FALSE, glm::value_ptr(proj));
-	glUniform1i(glGetUniformLocation(shader, "texture1"), 0);
-	glUniform1i(glGetUniformLocation(shader, "texture2"), 1); 
+	glUniform1i(glGetUniformLocation(shader, "texture1"), 0); // set it manually
+	glUniform1i(glGetUniformLocation(shader, "texture2"), 1); // set it manually
 }
 
 void Triangle::draw()
 {
+	glUseProgram(shader);
+	glBindVertexArray(VertexArrayID);
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture1);
+	glBindTexture(GL_TEXTURE_2D, texture1.GetTexture());
 	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, texture2);
+	glBindTexture(GL_TEXTURE_2D, texture2.GetTexture());
 	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
 	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 }
-
-

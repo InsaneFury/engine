@@ -1,22 +1,30 @@
 #ifndef COLOR_H
 #define COLOR_H
-#include "GLFW/glfw3.h"
+#define DLLEXPORT __declspec(dllexport)
 
-class Color
+#define RBGTOFLOAT 0.004f
+
+namespace Engine
 {
-	GLfloat red;
-	GLfloat green;
-	GLfloat blue;
-	GLfloat alpha;
+	//extern int RBGTOFLOAT;
 
-public:
-	Color(GLclampf _red, GLclampf green, GLclampf blue, GLclampf alpha);
-	~Color();
-	void SetColor(GLclampf _red, GLclampf green, GLclampf blue, GLclampf alpha);
-	GLfloat GetRed() { return red; }
-	GLfloat GetGreen() { return green; }
-	GLfloat GetBlue() { return blue; }
-	GLfloat GetAlpha() { return alpha; }
-};
-#endif // COLOR_H
+	class DLLEXPORT Color
+	{
+	private:
+		float _red;
+		float _green;
+		float _blue;
+		float _alpha;
+	public:
+		Color();
+		Color(float red, float green, float blue, float alpha);
+		void SetColor(float red, float green, float blue, float alpha);
+		float GetRed();
+		float GetGreen();
+		float GetBlue();
+		float GetAlpha();
+		~Color();
+	};
+}
 
+#endif //COLOR_H

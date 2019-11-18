@@ -3,14 +3,20 @@
 #include "Window.h"
 #define DLLEXPORT __declspec(dllexport)
 
-class DLLEXPORT Input
+namespace Engine
 {
-	GLFWwindow* window;
-public:
-	Input();
-	void setWindow(GLFWwindow* current);
-	bool getKey(int key);
-};
+	class DLLEXPORT Input
+	{
+	private:
+		GLFWwindow * window;
+		bool isKeyPressed[348] = { false };
+	public:
+		Input();
+		~Input();
+		void setWindow(GLFWwindow* _window);
+		bool getKey(int key);
+		bool getKeyDown(int key);
+	};
+}
 
-#endif //INPUT_H
-
+#endif // INPUT_H

@@ -1,138 +1,69 @@
 #include "BaseGame.h"
-#include "GL/glew.h"
-#include <GLFW/glfw3.h>
-#include "Window.h"
 #include "Renderer.h"
-#include "Color.h"
-#include "Triangle.h"
-#include "Input.h"
+
+using namespace Engine;
+
 BaseGame::BaseGame()
 {
-
+	_windowwidth = 0;
+	_windowHeight = 0;
 }
-int BaseGame::InitWindow() 
+
+void BaseGame::Init(int width, int height, string windowName)
 {
-	Window window;
-	window.CreateWindow();
-	Renderer render;
-	Input input;
-	input.setWindow(window.GetWindow());
-	Color bgColor = Color(1.0f, 1.0f, 0.0f, 1.0f);
-	Color tColor = Color(1.0f, 1.0f, 1.0f,1.0f);
-	Triangle triangle;
-	Triangle t2;
-	t2.currentRenderer = render;
-	triangle.currentRenderer = render;
-	triangle.set(tColor, "textures/pikachu.jpg", GL_RGB, true, "textures/capi.png", GL_RGBA, true );
-	t2.set(tColor, "textures/pikachu.jpg", GL_RGB, true, "textures/cris.png", GL_RGBA, true);
-	double currentFrame = glfwGetTime();
-	double lastFrame = currentFrame;
-	double deltaTime;
+	_window.setRenderer(_render);
+	_window.Open(width, height, windowName.c_str());
+	input.setWindow(_window.getWindow());
+}
 
-	double a = 0;
-	double speed = 0.1;
-
-	float x = 0;	
-	float y = 0;
-	float xRotate = 0;
-	int blinkSpeed = 200;
-
-	/* Loop until the user closes the window */
-	while (!glfwWindowShouldClose(window.GetWindow()))
+void BaseGame::GameLoop()
+{
+	while (!WindowIsClosed())
 	{
-		if (a < blinkSpeed) {
-			a++;
-		}
-		
-		currentFrame += glfwGetTime();
-		deltaTime = currentFrame - lastFrame;
-		lastFrame = currentFrame;
+		float time = (float)glfwGetTime();
+		Time Time = time - _lastFrameTime;
+		_lastFrameTime = time;
 
-		x = (sin(a *deltaTime * speed) * 0.8f);
-		y = (cos(a *deltaTime * speed) * 0.8f);
-		xRotate += deltaTime;
+		UpdateBackgroud();
 
-		bgColor = Color(x, y, 1.0f, 1.0f);
-		
+		Update(Time);
 
-		/* Render here */
-		render.SetBackground(bgColor);
-		t2.draw();
-		triangle.draw();
-		
-		triangle.rotate(1, glm::vec3(xRotate, 0.0f, 0.0f));
-
-		if (input.getKey(GLFW_KEY_RIGHT))
-		{
-			t2.translate(glm::vec3(-.01f, .0f, .0f));
-		}
-
-
-		if (input.getKey(GLFW_KEY_LEFT))
-		{
-			t2.translate(glm::vec3(.01f, .0f, .0f));
-		}
-
-		if (input.getKey(GLFW_KEY_UP))
-		{
-			t2.translate(glm::vec3(.0f, .01f, .0f));
-		}
-
-
-		if (input.getKey(GLFW_KEY_DOWN))
-		{
-			t2.translate(glm::vec3(.0f, -.01f, .0f));
-		}
-
-
-		if (input.getKey(GLFW_KEY_E))
-		{
-			triangle.rotate(1, glm::vec3(0.0f, 0.0f, 1.0f));
-		}
-
-		if (input.getKey(GLFW_KEY_Q))
-		{
-			triangle.rotate(-1, glm::vec3(0.0f, 0.0f, 1.0f));
-		}
-
-		if (input.getKey(GLFW_KEY_W))
-		{
-			triangle.translate(glm::vec3(.0f, .01f, .0f));
-		}
-
-		if (input.getKey(GLFW_KEY_S))
-		{
-			triangle.translate(glm::vec3(.0f, -.01f, .0f));
-		}
-
-		if (input.getKey(GLFW_KEY_A))
-		{
-			triangle.translate(glm::vec3(.01f, .0f, .0f));
-		}
-
-		if (input.getKey(GLFW_KEY_D))
-		{
-			triangle.translate(glm::vec3(-.01f, .0f, .0f));
-		}
-
-		if (input.getKey(GLFW_KEY_Z))
-		{
-			triangle.scale(glm::vec3(1.01f, 1.01f, 1.01f));
-		}
-
-		if (input.getKey(GLFW_KEY_X))
-		{
-			triangle.scale(glm::vec3(.99f, .99f, .99f));
-		}
-
-		/* Swap front and back buffers */
-		glfwSwapBuffers(window.GetWindow());
-
-		/* Poll for and process events */
-		glfwPollEvents();
+		SwapBuffers();
 	}
 
-	glDeleteProgram(triangle.GetShader());
+	DeInit();
+}
+
+void BaseGame::SetBackgroundColors(Color backgroundColor)
+{
+	_render.SetBackgroundColors(backgroundColor);
+}
+
+bool BaseGame::WindowIsClosed()
+{
+	return glfwWindowShouldClose(_window.getWindow());
+}
+
+void BaseGame::DeInit()
+{
 	glfwTerminate();
-	return 0;
+}
+
+void BaseGame::SwapBuffers()
+{
+	/* Swap front and back buffers */
+	glfwSwapBuffers(_window.getWindow());
+	/* Poll for and process events */
+	glfwPollEvents();
+}
+
+void BaseGame::UpdateBackgroud()
+{
+	/* Render here */
+	_render.ChangeBackgroundColor();
+}
+
+Renderer BaseGame::GetRenderer()
+{
+	return _render;
 }

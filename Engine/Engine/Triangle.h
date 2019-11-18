@@ -2,17 +2,21 @@
 #define TRIANGLE_H
 #define DLLEXPORT __declspec(dllexport)
 
-#include "Shape.h"
+#include "Entity2D.h"
 
-class DLLEXPORT Triangle : public Shape
+namespace Engine
 {
-
+	class DLLEXPORT Triangle : public Entity2D
+	{
+	private:
 	public:
 		Triangle();
+		Triangle(int _x, int _y);
 		Triangle(float _x, float _y);
-		void set(Color triangleColor, const char * pathTexture1, GLenum typeTexture1, bool flipTexture1,
-				 const char * pathTexture2, GLenum typeTexture2, bool flipTexture2);
+		Triangle(vec2 pos);
+		void set(Renderer renderer, Color triangleColor);
 		void draw();
-};
+	};
+}
 
 #endif //TRIANGLE_H

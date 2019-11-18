@@ -1,23 +1,51 @@
 #include "Color.h"
 
-Color::Color(GLclampf _red, GLclampf _green, GLclampf _blue, GLclampf _alpha)
-:
-red(_red),
-green(_green),
-blue(_blue),
-alpha(_alpha)
-{
+using namespace Engine;
 
+Color::Color()
+{
+	_red = 0;
+	_green = 0;
+	_blue = 0;
+	_alpha = 0;
+}
+
+Color::Color(float red, float green, float blue, float alpha)
+{
+	_red = red;
+	_green = green;
+	_blue = blue;
+	_alpha = alpha;
+}
+
+void Color::SetColor(float red, float green, float blue, float alpha)
+{
+	_red = red;
+	_green = green;
+	_blue = blue;
+	_alpha = alpha;
+}
+
+float Color::GetRed()
+{
+	return _red;
+}
+
+float Color::GetGreen()
+{
+	return _green;
+}
+
+float Color::GetBlue()
+{
+	return _blue;
+}
+
+float Color::GetAlpha()
+{
+	return _alpha;
 }
 
 Color::~Color()
 {
-}
-
-void Color::SetColor(GLclampf _red, GLclampf _green, GLclampf _blue, GLclampf _alpha)
-{
-	red = _red;
-	green = _green;
-	blue = _blue;
-	alpha = _alpha;
 }

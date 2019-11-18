@@ -1,17 +1,6 @@
-﻿  BaseGame.cpp
-c:\users\administrador\desktop\engine\engine\engine\transform.h(13): warning C4251: 'Transform::rotation': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
-  c:\users\administrador\desktop\engine\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
-c:\users\administrador\desktop\engine\engine\engine\transform.h(14): warning C4251: 'Transform::position': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
-  c:\users\administrador\desktop\engine\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
-c:\users\administrador\desktop\engine\engine\engine\transform.h(15): warning C4251: 'Transform::localScale': struct 'glm::vec<3,float,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Transform'
-  c:\users\administrador\desktop\engine\engine\libs\glm\fwd.hpp(418): note: vea la declaración de 'glm::vec<3,float,0>'
-c:\users\administrador\desktop\engine\engine\engine\shape.h(21): warning C4251: 'Shape::model': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
-  c:\users\administrador\desktop\engine\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
-c:\users\administrador\desktop\engine\engine\engine\shape.h(22): warning C4251: 'Shape::view': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
-  c:\users\administrador\desktop\engine\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
-c:\users\administrador\desktop\engine\engine\engine\shape.h(23): warning C4251: 'Shape::proj': struct 'glm::mat<4,4,glm::f32,0>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Shape'
-  c:\users\administrador\desktop\engine\engine\libs\glm\fwd.hpp(518): note: vea la declaración de 'glm::mat<4,4,glm::f32,0>'
-c:\users\administrador\desktop\engine\engine\engine\basegame.cpp(51): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-c:\users\administrador\desktop\engine\engine\engine\basegame.cpp(52): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-c:\users\administrador\desktop\engine\engine\engine\basegame.cpp(53): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
-  Engine.vcxproj -> C:\Users\Administrador\Desktop\engine\Engine\Debug\Engine.dll
+﻿  CollisionManager.cpp
+     Creating library C:\Users\Styev\Desktop\engine\Engine\Debug\Engine.lib and object C:\Users\Styev\Desktop\engine\Engine\Debug\Engine.exp
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Styev\Desktop\engine\Engine\Debug\vc120.pdb'; linking object as if no debug info
+  Engine.vcxproj -> C:\Users\Styev\Desktop\engine\Engine\Debug\Engine.dll

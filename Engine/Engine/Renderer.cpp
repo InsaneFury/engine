@@ -1,8 +1,8 @@
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
 #include "Renderer.h"
+#include "BaseGame.h"
 #include <fstream>
 #include <sstream>
+using namespace Engine;
 
 enum ShaderType
 {
@@ -13,8 +13,17 @@ enum ShaderType
 
 Renderer::Renderer()
 {
+	_red = 0;
+	_green = 0;
+	_blue = 0;
+	_alpha = 0;
+	view = glm::mat4(1.0f);
+	proj = glm::mat4(1.0f);
+	uniView = 0;
+	uniProj = 0;
+	SetProjection();
+	SetView();
 }
-
 
 ShaderProgramSource Renderer::ShaderParser(const string& filepath)
 {
@@ -89,9 +98,79 @@ unsigned int Renderer::CreateShader(const string& vertexShader, const string& fr
 	return program;
 }
 
+void Renderer::SetBackgroundColors(Color backgroundColor)
+{
+	float red = backgroundColor.GetRed() * RBGTOFLOAT;
+	float green = backgroundColor.GetGreen() * RBGTOFLOAT;
+	float blue = backgroundColor.GetBlue() * RBGTOFLOAT;
+	float alpha = backgroundColor.GetAlpha() * RBGTOFLOAT;
 
-void Renderer::SetBackground(Color _color)
+	color.SetColor(red, green, blue, alpha);
+}
+
+void Renderer::ChangeBackgroundColor()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	glClearColor(_color.GetRed(), _color.GetGreen(), _color.GetBlue(), _color.GetAlpha());
+	glClearColor(color.GetRed(), color.GetGreen(), color.GetBlue(), color.GetAlpha());
+}
+
+void Renderer::DeleteShader(unsigned int shader)
+{
+	glDeleteProgram(shader);
+}
+
+void Renderer::SetShader(unsigned int shader)
+{
+	glUseProgram(shader);
+}
+
+void Renderer::SetProjection()
+{
+	proj = glm::ortho(
+		-1.0f,
+		1.f,
+		-1.f,
+		1.0f,
+		0.0f,
+		100.f
+	);
+}
+
+void Renderer::SetView()
+{
+	view = glm::lookAt(
+		glm::vec3(0.0f, 0.0f, 2.0f), // position
+		glm::vec3(0.0f, 0.0f, 0.0f), // look at
+		glm::vec3(0.0f, 1.0f, 0.0f)  // up
+	);
+}
+
+mat4 Renderer::GetProjection()
+{
+	return proj;
+}
+
+GLuint Engine::Renderer::GetUniProj()
+{
+	return uniProj;
+}
+
+void Engine::Renderer::SetUniProj(GLuint _uniproj)
+{
+	uniProj = _uniproj;
+}
+
+mat4 Renderer::GetView()
+{
+	return view;
+}
+
+GLuint Engine::Renderer::GetUniView()
+{
+	return uniView;
+}
+
+void Engine::Renderer::SetUniView(GLuint _uniview)
+{
+	uniView = _uniview;
 }
