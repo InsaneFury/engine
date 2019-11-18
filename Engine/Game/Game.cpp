@@ -21,13 +21,13 @@ void Game::InitGame()
 	Init(1024, 720, "Best Game");
 
 	sprite.set(GetRenderer(), Colors.White);
-	sprite.SetMaterial1("textures/Male1.png", GL_RGBA, true, GL_NEAREST);
+	sprite.SetMaterial1("res/textures/Male1.png", GL_RGBA, true, GL_NEAREST);
 	sprite.setPosition(vec3(0, 0, 0));
 	sprite.SetAnimation(vec2(6, 6), 0.2f, vec2(1, 1));
 	sprite.Scale(vec3(1.0f, 1.0f, 1.0f));
 
 	sprite2.set(GetRenderer(), Colors.White);
-	sprite2.SetMaterial1("textures/ryu.png", GL_RGBA, true, GL_NEAREST);
+	sprite2.SetMaterial1("res/textures/ryu.png", GL_RGBA, true, GL_NEAREST);
 	sprite2.setPosition(vec3(0.f, 0, 0));
 	sprite2.SetAnimation(vec2(9, 1), 0.1f, vec2(0,0));
 	sprite2.Scale(vec3(2.0f, 2.0f, 2.0f));

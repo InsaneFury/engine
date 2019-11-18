@@ -39,7 +39,7 @@ Triangle::Triangle(vec2 pos)
 void Triangle::set(Renderer renderer, Color triangleColor)
 {
 	currentRenderer = renderer;
-	ShaderProgramSource source = currentRenderer.ShaderParser("shaders/Shape.shader");
+	ShaderProgramSource source = currentRenderer.ShaderParser("res/shaders/Shape.shader");
 	shader = currentRenderer.CreateShader(source.vertexSource, source.fragmentSource);
 	glUseProgram(shader);
 
