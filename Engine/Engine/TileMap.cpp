@@ -1,5 +1,11 @@
 #include "TileMap.h"
 //Get poss rotoooo mi doler mucho cabeza.
+//This->GetPos...()llama a la posicion desde la clase base, pero como soy un hdp no lo hice asi de un principio y tengo que cambiarlo.
+//revisar renderer esto es un caos
+//textureUVBufferId revisar
+//rearmar dibujado
+//rearmar setTranslation pasa lo mismo que con getpos
+
 
 namespace Engine
 {
