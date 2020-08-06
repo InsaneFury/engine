@@ -16,7 +16,7 @@ namespace Engine
 	class DLLEXPORT Entity
 	{
 	protected:
-		vec3 position;
+	
 		mat4 testPosition;
 		GLuint VertexArrayID;
 		GLuint VertexBuffer;
@@ -24,9 +24,15 @@ namespace Engine
 		GLint posAttrib;
 		GLint colAttrib;
 		GLint texAttrib;
-		mat4 model;
+	
+
 
 	public:
+		bool libre;
+		vec3 oldPosition;
+		mat4 oldModel;
+		vec3 position;
+		mat4 model;
 		Entity();
 		Entity(Renderer renderer);
 		~Entity();

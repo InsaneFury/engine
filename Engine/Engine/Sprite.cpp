@@ -10,6 +10,7 @@ Sprite::Sprite()
 	VertexArrayID = 0;
 	VertexBuffer = 0;
 	shader = 0;
+	id = -1;
 }
 
 Sprite::Sprite(int _x, int _y)
@@ -18,6 +19,7 @@ Sprite::Sprite(int _x, int _y)
 	VertexArrayID = 0;
 	VertexBuffer = 0;
 	shader = 0;
+	id = -1;
 }
 
 Sprite::Sprite(float _x, float _y)
@@ -26,6 +28,7 @@ Sprite::Sprite(float _x, float _y)
 	VertexArrayID = 0;
 	VertexBuffer = 0;
 	shader = 0;
+	id = -1;
 }
 
 Sprite::Sprite(vec2 pos)
@@ -34,6 +37,7 @@ Sprite::Sprite(vec2 pos)
 	VertexArrayID = 0;
 	VertexBuffer = 0;
 	shader = 0;
+	id = -1;
 }
 
 void Sprite::set(Renderer renderer, Color spriteColor)

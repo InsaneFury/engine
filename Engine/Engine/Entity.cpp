@@ -17,6 +17,7 @@ Entity::Entity()
 	position.z = 0;
 	uniModel = 0;
 	model = glm::mat4(1.0f);
+	libre = true;
 }
 
 Entity::Entity(Renderer renderer)
@@ -29,6 +30,7 @@ Entity::Entity(Renderer renderer)
 	position.z = 0;
 	uniModel = 0;
 	model = glm::mat4(1.0f);
+	libre = true;
 }
 
 Entity::Entity(int _x, int _y, int _z)
@@ -41,6 +43,7 @@ Entity::Entity(int _x, int _y, int _z)
 	position.z = 0;
 	uniModel = 0;
 	model = glm::mat4(1.0f);
+	libre = true;
 }
 
 Entity::Entity(float _x, float _y, float _z)
@@ -53,6 +56,7 @@ Entity::Entity(float _x, float _y, float _z)
 	position.z = 0;
 	uniModel = 0;
 	model = glm::mat4(1.0f);
+	libre = true;
 
 }
 
@@ -66,6 +70,7 @@ Entity::Entity(vec3 pos)
 	VertexBuffer = 0;
 	uniModel = 0;
 	model = glm::mat4(1.0f);
+	libre = true;
 }
 
 float Entity::getX()
@@ -127,13 +132,25 @@ void Entity::Rotate(vec3 _rotation)
 
 void Entity::setPosition(vec3 newTranslation)
 {
-	model = glm::translate(model, newTranslation);
+	//oldPosition = position;
+	if (libre)
+	{
+		oldModel = model;
+		model = glm::translate(model, newTranslation);
+	}
+	else
+		model = oldModel;
 
 	GLint m_viewport[4];
 
 	glGetIntegerv(GL_VIEWPORT, m_viewport);
-
-	position = glm::project(vec3(newTranslation.x, newTranslation.y, newTranslation.z), model, currentRenderer.GetProjection(), vec4(m_viewport[0], m_viewport[1], m_viewport[2], m_viewport[3]));
+	if (libre)
+	{
+		oldPosition = position;
+		position = glm::project(vec3(newTranslation.x, newTranslation.y, newTranslation.z), model, currentRenderer.GetProjection(), vec4(m_viewport[0], m_viewport[1], m_viewport[2], m_viewport[3]));
+	}
+	else
+		position = oldPosition;
 }
 
 vec3 Entity::getPosition()

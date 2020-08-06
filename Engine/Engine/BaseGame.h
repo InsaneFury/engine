@@ -10,6 +10,7 @@
 #include "Time.h"
 #include "Color.h"
 #include "ColorList.h"
+#include "TileMap.h"
 
 
 #define DLLEXPORT __declspec(dllexport)

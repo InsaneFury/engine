@@ -16,6 +16,8 @@ namespace Engine
 		Triangle triangle2;
 		Sprite sprite;
 		Sprite sprite2;
+		TileMap tilemap;
+		TileMap tile2;
 		float timer;
 		float timerSprite;
 	public:
@@ -24,7 +26,6 @@ namespace Engine
 		void InitGame();
 		void Update(Time deltaTime);
 		//void init();
-
 	};
 }
 

@@ -12,7 +12,9 @@ namespace Engine
 	private:
 		Animation animation;
 		vec2 spriteVertex[4];
+	
 	public:
+		int id;
 		Sprite();
 		Sprite(int _x, int _y);
 		Sprite(float _x, float _y);
