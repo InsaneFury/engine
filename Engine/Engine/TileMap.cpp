@@ -23,19 +23,23 @@ void TileMap::Set(Renderer _render, Color spriteColor, const char* path, vec2 ca
 		
 	}
 	}
-	for (int x = 0; x < cantTile.x; x++)
+	for (int y = 0; y < cantTile.x; y++)
 	{
-		for (int y = 0; y < cantTile.y; y++)
+		for (int x = 0; x < cantTile.x; x++)
 		{
-			
 			Sprite tile;
 			tile.set(_render, spriteColor);
 			tile.SetMaterial1(path, GL_RGB, true, GL_NEAREST);
-			tile.setPosition(vec3(-1 + y * sizeTile.x /200,1 + -x * sizeTile.y /200, 0.f));
-			//tile.setPosition(vec3(x * sizeTile.x, y * sizeTile.y, 0.f));
-			tile.SetAnimation(cantUV, 0.0f, ID[csvData[y + add]]);
+
+			//cout << "TileX " << tile.size().x << "TileY " << tile.size().y << endl;
+
+			tile.setPosition(vec3(-0.9 + x * 0.2f,0.9 + -y * 0.2f, 0.f));
+
+			cout <<"Tile Position Start: "<< tile.getPosition().x << " " << tile.getPosition().y << endl;
+
+			tile.SetAnimation(cantUV, 0.0f, ID[csvData[x + add]]);
 			tile.Scale(vec3(1.0f, 1.0f, 1.0f));
-			tile.id = csvData[y + add];
+			tile.id = csvData[x + add];
 			tiles.push_back(tile);
 
 		}
@@ -69,16 +73,20 @@ void TileMap::Draw()
 		tiles[i].draw();
 }
 
-void TileMap::GetTile(int id, Sprite* player)
+void TileMap::CheckTileCollision(int id, Sprite* player)
 {	
 	for (int i = 0; i < tiles.size(); i++)
 	{
 		if (tiles[i].id == id)
 		{
+			
 			//player->libre = player->BoxCollider.CollisionDetection(player->getPosition(), tiles[i].getPosition()+vec3(100.f,100.f, 0.f), player->size(),vec2(40.f,40.f));
 			vec3 tileCenter = vec3(tiles[i].size().x, tiles[i].size().y, 0.0f) /2.0f;
-			if(! player->BoxCollider.CollisionDetection(player->getPosition(), tiles[i].getPosition() + tileCenter, player->size(), tiles[i].size()))
+			vec3 desfase = vec3(tiles[i].getPosition().x - tiles[i].size().x*2, tiles[i].getPosition().y - tiles[i].size().y*2, 0.0f);
+
+			if(player->BoxCollider.CollisionDetection(player->getPosition(), desfase, player->size(), tiles[i].size()))
 			{
+				cout << tiles[i].getPosition().x <<" : "<< tiles[i].getPosition().y << endl;
 				player->model = player->oldModel;
 				player->position = player->oldPosition;
 			}

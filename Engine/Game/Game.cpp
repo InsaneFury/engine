@@ -32,7 +32,7 @@ void Game::InitGame()
 	sprite2.SetAnimation(vec2(9,1), 0.1f, vec2(0,0));
 	sprite2.Scale(vec3(2.0f, 2.0f, 2.0f));
 	
-	tilemap.Set(GetRenderer(), Colors.White, "res/textures/superSS.png",vec2(2,2), vec2(20, 20), vec2(32, 32),"res/textures/MapSS.csv");
+	tilemap.Set(GetRenderer(), Colors.White, "res/textures/superSS.png",vec2(2,2), vec2(19,19), vec2(.2f, .2f),"res/textures/MapSS.csv");
 	//tile2.Set(GetRenderer(), Colors.White, "res/textures/superSS.png", vec2(2, 2), vec2(32, 32));
 	GameLoop();
 }
@@ -41,9 +41,10 @@ void Game::Update(Time deltaTime)
 {
 	timerSprite += deltaTime;
 	timer += deltaTime;
-	tilemap.GetTile(2, &sprite);
-	cout << sprite.libre << endl;
+	
+	//cout << sprite.libre << endl;
 	//sprite.BoxCollider.CollisionDetection(sprite.getPosition(), sprite2.getPosition(), sprite.size(), sprite2.size());
+	//cout << "Player Size: " << sprite.size().x << " " << sprite.size().y << endl;
 
 	if (input.getKey(GLFW_KEY_D))
 	{
@@ -72,7 +73,10 @@ void Game::Update(Time deltaTime)
 	{
 		timerSprite = 0;
 	}
+	tilemap.CheckTileCollision(1, &sprite);
+
 	//sprite2.UpdateSprite(static_cast<int>(timerSprite), false, timer);
+	
 	tilemap.Draw();
 	sprite.draw();
 	//sprite2.draw();

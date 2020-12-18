@@ -28,6 +28,7 @@ namespace Engine
 
 
 	public:
+
 		bool libre;
 		vec3 oldPosition;
 		mat4 oldModel;

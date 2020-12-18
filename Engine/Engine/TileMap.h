@@ -20,7 +20,7 @@ public:
 	void Set(Renderer _render, Color spriteColor, const char* path, vec2 cantUV,vec2 cantTile, vec2 sizeTile, const char* pathCSV);
 	void Draw();
 	void ReadCSV(const char* path);
-	void GetTile(int id, Sprite* player);
+	void CheckTileCollision(int id, Sprite* player);
 };
 
 }
