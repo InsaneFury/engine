@@ -39,6 +39,7 @@ Tile::Tile(vec2 pos)
 void Tile::set(Renderer renderer, Color spriteColor)
 {
 	currentRenderer = renderer;
+	
 	ShaderProgramSource source = currentRenderer.ShaderParser("res/shaders/Shape.shader");
 	shader = currentRenderer.CreateShader(source.vertexSource, source.fragmentSource);
 	glUseProgram(shader);
@@ -72,7 +73,8 @@ void Tile::set(Renderer renderer, Color spriteColor)
 		spriteVertex[3].x, spriteVertex[3].y, red, green, blue, alpha, texCoords[3].x, texCoords[3].y
 	};
 	
-	currentRenderer.BindBufferSprite(shader, posAttrib, colAttrib, texAttrib, uniModel, model);
+	currentRenderer.BindBufferSprite( VertexBuffer,g_vertex_buffer_data);
+	currentRenderer.SetSpriteShaderAttrib(shader, posAttrib, colAttrib, texAttrib, uniModel, model);
 }
 
 void Tile::UpdateSprite(int row, bool isReversed, float& deltaTime)
@@ -95,7 +97,6 @@ void Tile::UpdateSprite(int row, bool isReversed, float& deltaTime)
 	};
 
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
-	// Darle nuestros vértices a  OpenGL.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 }
 

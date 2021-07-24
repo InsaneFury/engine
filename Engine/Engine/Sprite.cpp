@@ -46,7 +46,7 @@ void Sprite::set(Renderer renderer, Color spriteColor)
 
 	ShaderProgramSource source = currentRenderer.ShaderParser("res/shaders/Shape.shader");
 	shader = currentRenderer.CreateShader(source.vertexSource, source.fragmentSource);
-	glUseProgram(shader);
+	currentRenderer.UseProgram(shader);
 
 	vec2 texCoords[] =
 	{
@@ -61,13 +61,10 @@ void Sprite::set(Renderer renderer, Color spriteColor)
 	spriteVertex[2] = { 0.1f, 0.1f };
 	spriteVertex[3] = { -0.1f, 0.1f };
 
-
 	red = spriteColor.GetRed() * RBGTOFLOAT;
 	green = spriteColor.GetGreen() * RBGTOFLOAT;
 	blue = spriteColor.GetBlue() * RBGTOFLOAT;
 	alpha = spriteColor.GetAlpha() * RBGTOFLOAT;
-
-	
 
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
@@ -80,12 +77,8 @@ void Sprite::set(Renderer renderer, Color spriteColor)
 		spriteVertex[3].x, spriteVertex[3].y, red, green, blue, alpha, texCoords[3].x, texCoords[3].y
 	};
 
-	glGenBuffers(1, &VertexBuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
-
-	
-	currentRenderer.BindBufferSprite(shader, posAttrib, colAttrib, texAttrib, uniModel, model);
+	currentRenderer.BindBufferSprite(VertexBuffer,g_vertex_buffer_data);
+	currentRenderer.SetSpriteShaderAttrib(shader, posAttrib, colAttrib, texAttrib, uniModel, model);
 }
 
 void Sprite::UpdateSprite(int row, bool isReversed, float& deltaTime)
@@ -108,7 +101,6 @@ void Sprite::UpdateSprite(int row, bool isReversed, float& deltaTime)
 	};
 
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
-	// Darle nuestros vértices a  OpenGL.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 }
 

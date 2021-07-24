@@ -120,7 +120,7 @@ void Renderer::DeleteShader(unsigned int shader)
 	glDeleteProgram(shader);
 }
 
-void Renderer::SetShader(unsigned int shader)
+void Renderer::UseProgram(unsigned int shader)
 {
 	glUseProgram(shader);
 }
@@ -161,8 +161,11 @@ void Engine::Renderer::SetUniProj(GLuint _uniproj)
 	uniProj = _uniproj;
 }
 
-void Renderer::BindBufferSprite(unsigned int shader ,GLint posAttrib, GLint colAttrib,GLint texAttrib,GLuint uniModel,glm::mat4 model)
+void Renderer::BindBufferSprite(GLuint &VertexBuffer ,const GLfloat g_vertex_buffer_data[])
 {
+	glGenBuffers(1, &VertexBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
 	mat4 proj = GetProjection();
 	mat4 view = GetView();
@@ -178,32 +181,6 @@ void Renderer::BindBufferSprite(unsigned int shader ,GLint posAttrib, GLint colA
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
-
-	posAttrib = glGetAttribLocation(shader, "position");
-	glEnableVertexAttribArray(posAttrib);
-	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), 0);
-
-	colAttrib = glGetAttribLocation(shader, "color");
-	glEnableVertexAttribArray(colAttrib);
-	glVertexAttribPointer(colAttrib, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
-
-	texAttrib = glGetAttribLocation(shader, "texturePos");
-	glEnableVertexAttribArray(texAttrib);
-	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-
-
-	uniModel = glGetUniformLocation(shader, "model");
-	model = glm::translate(glm::vec3(0.0f, 0.0f, 0.0f));
-	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
-
-	SetUniView(glGetUniformLocation(shader, "view"));
-	glUniformMatrix4fv(GetUniView(), 1, GL_FALSE, glm::value_ptr(view));
-
-	SetUniProj(glGetUniformLocation(shader, "proj"));
-	glUniformMatrix4fv(GetUniProj(), 1, GL_FALSE, glm::value_ptr(proj));
-
-	glUniform1i(glGetUniformLocation(shader, "texture1"), 0); // set it manually
-	glUniform1i(glGetUniformLocation(shader, "texture2"), 1); // set it manually
 }
 
 void Renderer::DrawSprite(unsigned int shader,GLuint VertexArrayID,Material texture1,Material texture2,GLuint uniModel,glm::mat4 model)
@@ -221,6 +198,34 @@ void Renderer::DrawSprite(unsigned int shader,GLuint VertexArrayID,Material text
 mat4 Renderer::GetView()
 {
 	return view;
+}
+
+void Renderer::SetSpriteShaderAttrib(unsigned int shader, GLint posAttrib, GLint colAttrib, GLint texAttrib, GLuint uniModel, glm::mat4 model)
+{
+	posAttrib = glGetAttribLocation(shader, "position");
+	glEnableVertexAttribArray(posAttrib);
+	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), 0);
+
+	colAttrib = glGetAttribLocation(shader, "color");
+	glEnableVertexAttribArray(colAttrib);
+	glVertexAttribPointer(colAttrib, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
+
+	texAttrib = glGetAttribLocation(shader, "texturePos");
+	glEnableVertexAttribArray(texAttrib);
+	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+
+	uniModel = glGetUniformLocation(shader, "model");
+	model = glm::translate(glm::vec3(0.0f, 0.0f, 0.0f));
+	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
+
+	SetUniView(glGetUniformLocation(shader, "view"));
+	glUniformMatrix4fv(GetUniView(), 1, GL_FALSE, glm::value_ptr(view));
+
+	SetUniProj(glGetUniformLocation(shader, "proj"));
+	glUniformMatrix4fv(GetUniProj(), 1, GL_FALSE, glm::value_ptr(proj));
+
+	glUniform1i(glGetUniformLocation(shader, "texture1"), 0); // set it manually
+	glUniform1i(glGetUniformLocation(shader, "texture2"), 1); // set it manually
 }
 
 GLuint Engine::Renderer::GetUniView()

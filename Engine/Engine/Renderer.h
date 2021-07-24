@@ -48,7 +48,8 @@ namespace Engine
 		void SetBackgroundColors(Color backgroundColor);
 		void ChangeBackgroundColor();
 		void DeleteShader(unsigned int shader);
-		void SetShader(unsigned int shader);
+		void UseProgram(unsigned int shader);
+		void SetSpriteShaderAttrib(unsigned int shader, GLint posAttrib, GLint colAttrib, GLint texAttrib, GLuint uniModel, glm::mat4 model);
 		ShaderProgramSource ShaderParser(const string& filepath);
 		unsigned int CompileShader(unsigned int type, const string& source);
 		unsigned int CreateShader(const string& vertexShader, const string& fragmentShader);
@@ -58,7 +59,7 @@ namespace Engine
 		mat4 GetProjection();
 		GLuint GetUniProj();
 		void SetUniProj(GLuint _uniproj);
-		void BindBufferSprite(unsigned int shader, GLint posAttrib, GLint colAttrib, GLint texAttrib, GLuint uniModel, glm::mat4 model);
+		void BindBufferSprite(GLuint& VertexBuffer, const GLfloat g_vertex_buffer_data[]);
 		void DrawSprite(unsigned int shader, GLuint VertexArrayID, Material texture1, Material texture2, GLuint uniModel, glm::mat4 model);
 		
 	};
