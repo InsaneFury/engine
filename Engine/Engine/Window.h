@@ -2,8 +2,7 @@
 #define WINDOW_H
 #include <iostream>
 #include "Renderer.h"
-#include "GL/glew.h"
-#include "GLFW/glfw3.h"
+
 #define DLLEXPORT __declspec(dllexport)
 
 using namespace std;

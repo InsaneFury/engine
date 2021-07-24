@@ -1,7 +1,8 @@
 #include "Renderer.h"
-#include "BaseGame.h"
+
 #include <fstream>
 #include <sstream>
+#include "Material.h"
 using namespace Engine;
 
 enum ShaderType
@@ -158,6 +159,18 @@ GLuint Engine::Renderer::GetUniProj()
 void Engine::Renderer::SetUniProj(GLuint _uniproj)
 {
 	uniProj = _uniproj;
+}
+
+void Renderer::DrawSprite(unsigned int shader,GLuint VertexArrayID,Material texture1,Material texture2,GLuint uniModel,glm::mat4 model)
+{
+	glUseProgram(shader);
+	glBindVertexArray(VertexArrayID);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture1.GetTexture());
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, texture2.GetTexture());
+	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
+	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, 0);
 }
 
 mat4 Renderer::GetView()

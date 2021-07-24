@@ -134,7 +134,6 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="TextureDefine.cpp" />
     <ClCompile Include="TextureImporter.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileMap.cpp" />

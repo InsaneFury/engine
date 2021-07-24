@@ -1,6 +1,4 @@
 #include "Window.h"
-#include "BaseGame.h"
-#include "Renderer.h"
 #include "Entity2D.h"
 #include "Triangle.h"
 #include "Input.h"

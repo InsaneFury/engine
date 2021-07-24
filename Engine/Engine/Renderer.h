@@ -7,7 +7,8 @@
 #include "gtc/matrix_transform.hpp"
 #include "gtc/type_ptr.hpp"
 #include "gtx/transform.hpp"
-
+#include "GL/glew.h"
+#include "GLFW/glfw3.h"
 
 #define DLLEXPORT __declspec(dllexport)
 typedef unsigned int GLuint;
@@ -20,6 +21,7 @@ using glm::vec2;
 
 namespace Engine
 {
+	class Material;
 
 	struct ShaderProgramSource
 	{
@@ -56,6 +58,7 @@ namespace Engine
 		mat4 GetProjection();
 		GLuint GetUniProj();
 		void SetUniProj(GLuint _uniproj);
+		void DrawSprite(unsigned int shader, GLuint VertexArrayID, Material texture1, Material texture2, GLuint uniModel, glm::mat4 model);
 	};
 }
 

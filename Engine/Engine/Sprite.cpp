@@ -180,12 +180,5 @@ void Sprite::SetAnimation(vec2 imageCount, float switchTime, vec2 startingFrame)
 
 void Sprite::draw()
 {
-	glUseProgram(shader);
-	glBindVertexArray(VertexArrayID);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture1.GetTexture());
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, texture2.GetTexture());
-	glUniformMatrix4fv(uniModel, 1, GL_FALSE, glm::value_ptr(model));
-	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, 0);
+	currentRenderer.DrawSprite(shader, VertexArrayID, texture1, texture2, uniModel, model);
 }
