@@ -58,7 +58,9 @@ namespace Engine
 		mat4 GetProjection();
 		GLuint GetUniProj();
 		void SetUniProj(GLuint _uniproj);
+		void BindBufferSprite(unsigned int shader, GLint posAttrib, GLint colAttrib, GLint texAttrib, GLuint uniModel, glm::mat4 model);
 		void DrawSprite(unsigned int shader, GLuint VertexArrayID, Material texture1, Material texture2, GLuint uniModel, glm::mat4 model);
+		
 	};
 }
 
