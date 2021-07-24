@@ -8,6 +8,7 @@
 #include "gtc/type_ptr.hpp"
 #include "gtx/transform.hpp"
 
+
 #define DLLEXPORT __declspec(dllexport)
 typedef unsigned int GLuint;
 

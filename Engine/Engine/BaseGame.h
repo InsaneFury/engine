@@ -7,7 +7,7 @@
 #include "Entity2D.h"
 #include "Triangle.h"
 #include "Sprite.h"
-#include "Time.h"
+#include "Timer.h"
 #include "Color.h"
 #include "ColorList.h"
 #include "TileMap.h"

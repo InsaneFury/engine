@@ -1,5 +1,5 @@
-#ifndef Time_H
-#define Time_H
+#ifndef Timer_H
+#define Timer_H
 #define DLLEXPORT __declspec(dllexport)
 
 
