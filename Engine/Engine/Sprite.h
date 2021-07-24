@@ -4,6 +4,7 @@
 
 #include "Entity2D.h"
 #include "Animation.h"
+#include "Window.h"
 
 namespace Engine
 {
@@ -12,7 +13,7 @@ namespace Engine
 	private:
 		Animation animation;
 		vec2 spriteVertex[4];
-	
+		void RefreshBuffer();
 	public:
 		int id;
 		Sprite();

@@ -98,6 +98,7 @@ void Tile::UpdateSprite(int row, bool isReversed, float& deltaTime)
 
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+
 }
 
 void Tile::SetSingleFrame(vec2 framePos)
