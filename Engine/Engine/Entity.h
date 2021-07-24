@@ -24,8 +24,6 @@ namespace Engine
 		GLint posAttrib;
 		GLint colAttrib;
 		GLint texAttrib;
-	
-
 
 	public:
 
@@ -49,9 +47,6 @@ namespace Engine
 		void setY(float _y);
 		void setZ(float _z);
 		void moveTo(float _x, float _y, float _z);
-		virtual void set(Renderer renderer, Color shapeColor);
-		virtual void draw();
-		void endDraw();
 		void Rotate(vec3 _rotation);
 		void Scale(vec3 _scale);
 		Renderer currentRenderer;

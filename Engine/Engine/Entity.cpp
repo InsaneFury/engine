@@ -105,24 +105,6 @@ void Entity::moveTo(float _x, float _y, float _z)
 	setZ(_z);
 }
 
-void Entity::set(Renderer renderer, Color triangleColor)
-{
-
-}
-
-void Entity::draw()
-{
-
-}
-
-void Entity::endDraw()
-{
-	//glDisableVertexAttribArray();
-	glDisableVertexAttribArray(posAttrib);
-	glDisableVertexAttribArray(colAttrib);
-	glDisableVertexAttribArray(texAttrib);
-}
-
 void Entity::Rotate(vec3 _rotation)
 {
 	model = glm::rotate(model, glm::radians(_rotation.x), vec3(1.0f, 0.0f, 0.0f));

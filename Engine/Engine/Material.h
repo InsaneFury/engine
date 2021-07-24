@@ -2,8 +2,8 @@
 #define MATERIAL_H
 #define DLLEXPORT __declspec(dllexport)
 
-#include "stb_image.h"
 #include "Window.h"
+#include "TextureImporter.h"
 
 namespace Engine // Shaders que se van a usar, destruye su shader, bindea shaders, 
 {
